@@ -37,5 +37,13 @@ public class Cart {
 //    private List<Comment> comments = new ArrayList<>();
 
 
+    public void setMember(Member member) {
+        this.member = member;
+        member.getCarts().add(this);
+    }
 
+    public void addProduct(Product product) {
+        products.add(product);
+        product.setCart(this);
+    }
 }

@@ -17,9 +17,6 @@ public class ProductDescription {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
 
     @Column
     private String textDescription;
@@ -29,6 +26,23 @@ public class ProductDescription {
 
     @OneToMany(mappedBy = "productDescription")
     private List<Comment> comments = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        comment.setProductDescription(this);
+
+    }
+
+    public void setProduct(Product product){
+        this.product = product;
+        product.getProduct_Description().add(this);
+    }
+
+
 
 
 }

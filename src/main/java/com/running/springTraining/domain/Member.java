@@ -33,6 +33,10 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Cart> carts = new ArrayList<>();
 
+    public void addCart(Cart cart) {
+        carts.add(cart);
+        cart.setMember(this);
+    }
 
 
 

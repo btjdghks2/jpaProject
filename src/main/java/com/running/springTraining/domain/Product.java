@@ -31,6 +31,17 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<ProductDescription> Product_Description = new ArrayList<>();
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+        cart.getProducts().add(this);
+    }
+
+    public void addProductDescription(ProductDescription productDescription) {
+        Product_Description.add(productDescription);
+        productDescription.setProduct(this);
+
+    }
+
 
 
 
