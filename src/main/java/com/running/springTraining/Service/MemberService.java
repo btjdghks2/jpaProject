@@ -1,7 +1,5 @@
 package com.running.springTraining.Service;
 
-import com.running.springTraining.Dto.MemberDto;
-import com.running.springTraining.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
