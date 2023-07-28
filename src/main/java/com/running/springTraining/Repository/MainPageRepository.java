@@ -1,9 +1,8 @@
 package com.running.springTraining.Repository;
 
 import com.running.springTraining.domain.Product;
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
+import com.running.springTraining.domain.ProductDescription;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -25,6 +24,15 @@ public class MainPageRepository {
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
+
+    public List<ProductDescription> DetailPage() {
+        return em.createQuery("select p from ProductDescripition p",ProductDescription.class)
+                .getResultList();
+    }
+
+
+
+
 
 
 
