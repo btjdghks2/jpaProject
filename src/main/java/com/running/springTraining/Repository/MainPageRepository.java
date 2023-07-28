@@ -9,13 +9,27 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Optional;
 
 
-public interface MainPageRepository extends JpaRepository<Product, Long> {
+@Repository
+public class MainPageRepository {
 
-    @Override
-    List<Product> findAll();
+    @PersistenceContext
+    EntityManager em;
+
+    public Product save(Long id) {
+        return em.find(Product.class, id);
+    }
+
+    public List<Product> MainList() {
+        return em.createQuery("select p from Product p", Product.class)
+                .getResultList();
+    }
+
+
+
+
+
 
 
 

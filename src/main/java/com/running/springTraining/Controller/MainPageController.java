@@ -25,33 +25,29 @@ public class MainPageController {
 
     // 메인페이지 목록 출력
     @GetMapping("/api/mainpage/")
-    public Result mainpage() {
+    public List<ProductListDto> mainpage() {
 
-        List<Product> MainAll = mainPageService.MainList();
-        List<ProductDto> collect = MainList.steam()
-                .map(m -> new ProductDto(m.getId,m.getName,m.getPrice()))
+        List<Product> products = mainPageRepository.MainList();
+        List<ProductListDto> result = products.stream()
+                .map(p -> new ProductListDto(p))
                 .collect(Collectors.toList());
 
+        return result;
 
-
-
-        //기본적으로 이것은 조회하는 아이피다, 그러므로 처음 들어오면(요청request) responsebody를 사용하는게 우선인것이다 메인페이지에 노출해야 할 것은
-        // 상품이름, 가격, 상품이미지 3가지 이다
 
     }
 
     @Data
-    @AllArgsConstructor
-    static class Result<T> {
-        private T data;
-
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class ProductDto {
+    static class ProductListDto {
         private Long id;
         private String name;
         private int price;
+
+        public ProductListDto(Product product) {
+            this.id = product.getId();
+            this.name = product.getName();
+            this.price = product.getPrice();
+        }
     }
+
 }
