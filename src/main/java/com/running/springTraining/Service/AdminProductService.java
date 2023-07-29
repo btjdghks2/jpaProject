@@ -20,4 +20,10 @@ public class AdminProductService {
 
     }
 
+    public Long update(Product product) {
+        mainPageRepository.findbyitem(product.getId());
+        mainPageRepository.save(product.getId());
+        return product.getId();
+    }
+
 }

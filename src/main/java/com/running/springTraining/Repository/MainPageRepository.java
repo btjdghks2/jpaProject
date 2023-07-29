@@ -30,6 +30,10 @@ public class MainPageRepository {
                 .getResultList();
     }
 
+    public Product findbyitem(Long id) {
+        return em.find(Product.class, id);
+    }
+
 
 
 
