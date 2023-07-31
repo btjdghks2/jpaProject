@@ -1,5 +1,7 @@
 package com.running.springTraining.Controller;
 
+import com.running.springTraining.Dto.CreateProductRequest;
+import com.running.springTraining.Dto.CreateProductResponse;
 import com.running.springTraining.Repository.MainPageRepository;
 import com.running.springTraining.Service.AdminProductService;
 import com.running.springTraining.domain.Product;
@@ -30,48 +32,14 @@ public class AdminProductController {
         product.setProductCount(request.getProductCount());
 
         Long id = adminProductService.join(product);
-        return new CreateProductResponse();
+        return null;
 
     }
 
-    @Data
-    static class CreateProductResponse {
 
-        private Long id;
-        private String name;
-        private int productCount;
-        private int price;
-        private String textDescription;
-        private String imagelink;
 
-        public CreateProductResponse(Product product, ProductDescription productDescription) {
-            this.id = product.getId();
-            this.name = product.getName();
-            this.productCount = product.getProductCount();
-            this.price = product.getPrice();
-            this.textDescription = productDescription.getTextDescription();
-            this.imagelink = productDescription.getImagelink();
-        }
-    }
 
-    @Data
-    static class CreateProductRequest {
 
-        private Long id;
-        private String name;
-        private int productCount;
-        private int price;
-        private String textDescription;
-        private String imagelink;
 
-        public CreateProductRequest(Product product, ProductDescription productDescription) {
-            this.id = product.getId();
-            this.name = product.getName();
-            this.productCount = product.getProductCount();
-            this.price = product.getPrice();
-            this.textDescription = productDescription.getTextDescription();
-            this.imagelink = productDescription.getImagelink();
-        }
-    }
 
 }

@@ -1,5 +1,6 @@
 package com.running.springTraining.Controller;
 
+import com.running.springTraining.Dto.ProductDetailDto;
 import com.running.springTraining.Repository.MainPageRepository;
 import com.running.springTraining.domain.Comment;
 import com.running.springTraining.domain.Product;
@@ -27,29 +28,12 @@ public class ProductDetailController {
         productDescription detail = mainPageRepository.DetailPage(id);
 
 
-        return
+        return null;
     }
 
 
 
-    @Data
-    static class ProductDetailDto {
 
-        private Long id;
-        private String name;
-        private int productCount;
-        private String textDescription;
-        private String imagelink;
-
-
-        public ProductDetailDto(ProductDescription productDescription,Product product) {
-            this.id = productDescription.getId();
-            this.name = product.getName();
-            this.productCount = product.getProductCount();
-            this.textDescription = productDescription.getTextDescription();
-            this.imagelink = productDescription.getImagelink();
-        }
-    }
 
 
 }
