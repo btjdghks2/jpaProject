@@ -1,6 +1,8 @@
 package com.running.springTraining.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -16,11 +18,19 @@ public class Product {
     @GeneratedValue
     private Long id;
 
-
     @Column
     private String name;
+
+
+    @Column
+    private String textDescription;
+
+    @Column
+    private String imagelink;
+
     @Column
     private int productCount;
+
     @Column
     private int price;
 
@@ -28,18 +38,22 @@ public class Product {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @OneToMany(mappedBy = "product")
-    private List<ProductDescription> Product_Description = new ArrayList<>();
+    @OneToMany(mappedBy = "productDescription")
+    private List<Comment> comments = new ArrayList<>();
+
+
+    public Product(Long id, String name, String imagelink, int price, String textDescription, int productCount) {
+        this.id = id;
+        this.name = name;
+        this.imagelink = imagelink;
+        this.textDescription = textDescription;
+        this.price = price;
+        this.productCount = productCount;
+    }
 
     public void setCart(Cart cart) {
         this.cart = cart;
         cart.getProducts().add(this);
-    }
-
-    public void addProductDescription(ProductDescription productDescription) {
-        Product_Description.add(productDescription);
-        productDescription.setProduct(this);
-
     }
 
 

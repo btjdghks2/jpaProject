@@ -1,39 +1,36 @@
 package com.running.springTraining.Controller;
-
-import com.running.springTraining.Dto.CreateProductRequest;
-import com.running.springTraining.Dto.CreateProductResponse;
-import com.running.springTraining.Repository.MainPageRepository;
+import com.running.springTraining.Dto.*;
 import com.running.springTraining.Service.AdminProductService;
 import com.running.springTraining.domain.Product;
-import com.running.springTraining.domain.ProductDescription;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.persistence.Column;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@T
 public class AdminProductController {
 
-    private final MainPageRepository mainPageRepository;
+
     private final AdminProductService adminProductService;
 
     @PostMapping("/api/admin/new")
-    public CreateProductResponse ProductSave(@RequestBody @Valid CreateProductRequest request) {
+    public CreateProductResponse ProductSave(@RequestBody @Valid CreateProductResponse createProductResponse) {
 
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setId(request.getId());
-        product.setPrice(request.getPrice());
-        product.setProductCount(request.getProductCount());
+        return adminProductService.join(createProductResponse);
 
-        Long id = adminProductService.join(product);
-        return null;
+    }
 
+    @PutMapping("/api/admin/{id}/update/")
+    public UpdateProductResponse ProductUpdate(@PathVariable Long id, @RequestBody UpdateProductResponse updateProductResponse) {
+
+        return adminProductService.updatelogic(id, updateProductResponse);
+    }
+
+    @DeleteMapping("/api/admin/{id}/delete")
+    public String ProductDelete(@PathVariable Long id) {
+
+        return adminProductService.deletelogic(id);
     }
 
 

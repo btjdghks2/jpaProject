@@ -2,7 +2,6 @@ package com.running.springTraining.Repository;
 
 import com.running.springTraining.domain.Product;
 
-import com.running.springTraining.domain.ProductDescription;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,8 +15,10 @@ public class MainPageRepository {
     @PersistenceContext
     EntityManager em;
 
-    public Product save(Long id) {
-        return em.find(Product.class, id);
+    public Long save(Product product) {
+
+         em.persist(product);
+         return product.getId();
     }
 
     public List<Product> MainList() {
@@ -25,12 +26,13 @@ public class MainPageRepository {
                 .getResultList();
     }
 
-    public List<ProductDescription> DetailPage() {
-        return em.createQuery("select p from ProductDescripition p",ProductDescription.class)
+    public List<Product> DetailPage() {
+        return em.createQuery("select p from ProductDescripition p",Product.class)
                 .getResultList();
     }
 
     public Product findbyitem(Long id) {
+
         return em.find(Product.class, id);
     }
 

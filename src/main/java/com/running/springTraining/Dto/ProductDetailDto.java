@@ -1,26 +1,31 @@
 package com.running.springTraining.Dto;
 
 import com.running.springTraining.domain.Product;
-import com.running.springTraining.domain.ProductDescription;
 import lombok.Data;
+
+import javax.persistence.Column;
 
 @Data
 public class ProductDetailDto {
 
-
+        @Column
         private Long id;
+        @Column
         private String name;
+        @Column
         private int productCount;
+        @Column
         private String textDescription;
+        @Column
         private String imagelink;
 
 
-        public ProductDetailDto(ProductDescription productDescription, Product product) {
-            this.id = productDescription.getId();
+        public ProductDetailDto(Product product) {
+            this.id = product.getId();
             this.name = product.getName();
             this.productCount = product.getProductCount();
-            this.textDescription = productDescription.getTextDescription();
-            this.imagelink = productDescription.getImagelink();
+            this.textDescription = product.getTextDescription();
+            this.imagelink = product.getImagelink();
         }
 
 }

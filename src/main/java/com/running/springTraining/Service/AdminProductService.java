@@ -1,29 +1,57 @@
 package com.running.springTraining.Service;
 
+import com.running.springTraining.Dto.CreateProductResponse;
+import com.running.springTraining.Dto.DeleteProductResponse;
+import com.running.springTraining.Dto.UpdateProductResponse;
+import com.running.springTraining.Repository.AdminRepository;
 import com.running.springTraining.Repository.MainPageRepository;
 import com.running.springTraining.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AdminProductService {
 
-    private final MainPageRepository mainPageRepository;
 
-    public Long join(Product product) {
+    private final AdminRepository adminRepository;
 
-        mainPageRepository.save(product.getId());
+    public CreateProductResponse join(CreateProductResponse createProductResponse) {
+        Product product = new Product(  createProductResponse.getId(),
+                                        createProductResponse.getName(),
+                                        createProductResponse.getImagelink(),
+                                        createProductResponse.getPrice(),
+                                        createProductResponse.getTextDescription(),
+                                        createProductResponse.getProductCount());
 
-        return product.getId();
+        adminRepository.save(product);
+        return new CreateProductResponse(product);
+    }
 
+    public UpdateProductResponse updatelogic(Long id, UpdateProductResponse updateProductResponse) {
+
+        Product product = adminRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        product.setName(product.getName());
+        product.setTextDescription(product.getTextDescription());
+        product.setImagelink(product.getImagelink());
+        product.setPrice(product.getPrice());
+        product.setProductCount(product.getProductCount());
+        adminRepository.save(product);
+
+
+        return new UpdateProductResponse(product);
 
     }
 
-    public Long update(Product product) {
-        mainPageRepository.findbyitem(product.getId());
-        mainPageRepository.save(product.getId());
-        return product.getId();
-    }
+    public String deletelogic(Long id) {
+        Product product = adminRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
+        adminRepository.deleteById(id);
+        return "ok";
+    }
 }
