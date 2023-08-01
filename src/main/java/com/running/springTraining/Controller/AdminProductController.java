@@ -1,14 +1,16 @@
 package com.running.springTraining.Controller;
-import com.running.springTraining.Dto.*;
+import com.running.springTraining.Dto.AdminDto.CreateProductResponse;
+import com.running.springTraining.Dto.AdminDto.UpdateProductResponse;
 import com.running.springTraining.Service.AdminProductService;
-import com.running.springTraining.domain.Product;
+
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@T
+@Transactional
 public class AdminProductController {
 
 
@@ -22,7 +24,7 @@ public class AdminProductController {
     }
 
     @PutMapping("/api/admin/{id}/update/")
-    public UpdateProductResponse ProductUpdate(@PathVariable Long id, @RequestBody UpdateProductResponse updateProductResponse) {
+    public UpdateProductResponse ProductUpdate(@PathVariable Long id, @RequestBody @Valid UpdateProductResponse updateProductResponse) {
 
         return adminProductService.updatelogic(id, updateProductResponse);
     }

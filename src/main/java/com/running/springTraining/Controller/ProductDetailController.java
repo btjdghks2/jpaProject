@@ -1,6 +1,6 @@
 package com.running.springTraining.Controller;
 
-import com.running.springTraining.Dto.ProductDetailDto;
+import com.running.springTraining.Dto.AdminDto.ProductDetailDto;
 import com.running.springTraining.Repository.MainPageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

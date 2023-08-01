@@ -1,4 +1,4 @@
-package com.running.springTraining.Dto;
+package com.running.springTraining.Dto.AdminDto;
 
 import com.running.springTraining.domain.Product;
 

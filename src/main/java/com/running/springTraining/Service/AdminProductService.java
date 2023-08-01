@@ -1,10 +1,8 @@
 package com.running.springTraining.Service;
 
-import com.running.springTraining.Dto.CreateProductResponse;
-import com.running.springTraining.Dto.DeleteProductResponse;
-import com.running.springTraining.Dto.UpdateProductResponse;
+import com.running.springTraining.Dto.AdminDto.CreateProductResponse;
+import com.running.springTraining.Dto.AdminDto.UpdateProductResponse;
 import com.running.springTraining.Repository.AdminRepository;
-import com.running.springTraining.Repository.MainPageRepository;
 import com.running.springTraining.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

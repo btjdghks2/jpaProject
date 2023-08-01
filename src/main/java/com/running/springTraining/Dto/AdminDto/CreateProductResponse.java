@@ -1,4 +1,4 @@
-package com.running.springTraining.Dto;
+package com.running.springTraining.Dto.AdminDto;
 
 import com.running.springTraining.domain.Product;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Column;
 
 @Data
-public class ProductDetailDto {
+public class CreateProductResponse {
 
         @Column
         private Long id;
@@ -15,17 +15,18 @@ public class ProductDetailDto {
         @Column
         private int productCount;
         @Column
+        private int price;
+        @Column
         private String textDescription;
         @Column
         private String imagelink;
 
-
-        public ProductDetailDto(Product product) {
+        public CreateProductResponse(Product product) {
             this.id = product.getId();
             this.name = product.getName();
             this.productCount = product.getProductCount();
+            this.price = product.getPrice();
             this.textDescription = product.getTextDescription();
             this.imagelink = product.getImagelink();
         }
-
 }
